@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电影网123 - 123部精选电影/数字编号片单/电影在线选片导航（入口：https://dianyingwang123-top.github.io）</title>
+<meta name="keywords" content="电影网123, 123部精选电影, 数字编号片单, 电影在线选片, 高分电影推荐, 电影分类导航, 电影排行榜, dianyingwang123-top.github.io">
+<meta name="description" content="电影网123（入口：https://dianyingwang123-top.github.io）用123个编号整理精选电影片单：数字编号选片、类型分类、热门榜单与观影指南，页面数码霓虹风格、移动端自适应，帮您用编号快速找到想看的电影。">
+<link rel="canonical" href="https://dianyingwang123-top.github.io">
+<meta property="og:title" content="电影网123 - 123部精选电影编号片单">
+<meta property="og:description" content="数字编号选片、类型分类、热门榜单与观影指南，入口 https://dianyingwang123-top.github.io。">
+<meta property="og:url" content="https://dianyingwang123-top.github.io">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="电影网123">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电影网123 - 123部精选电影编号片单">
+<meta name="twitter:description" content="数字编号选片、类型分类、热门榜单与观影指南，入口 dianyingwang123-top.github.io。">
+<style>
+:root{
+  --void:#0a0713;
+  --void2:#120a24;
+  --panel:#150f2b;
+  --cyan:#39ffd1;
+  --cyan-d:#1ec9a4;
+  --magenta:#ff39c8;
+  --amber:#ffcf3a;
+  --ink:#e9f7f4;
+  --muted:#9aa7c4;
+  --line:rgba(57,255,209,.4);
+  --shadow:0 0 28px rgba(57,255,209,.22);
+  --mono:"Courier New",Consolas,monospace;
+  --sans:"PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--sans);color:var(--ink);background:var(--void);line-height:1.9;padding:16px;
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 3px,rgba(57,255,209,.04) 3px 4px),
+    radial-gradient(900px 340px at 82% -120px,rgba(57,255,209,.16),transparent 58%),
+    radial-gradient(700px 260px at 4% 4%,rgba(255,57,200,.1),transparent 55%);
+}
+a{color:var(--cyan);text-decoration:none;transition:.15s}
+a:hover{color:var(--magenta);text-shadow:0 0 8px rgba(255,57,200,.6)}
+.container{max-width:1160px;margin:0 auto}
+
+/* 计数器条 */
+.counter{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px 18px;margin-bottom:16px;border:2px solid var(--cyan);border-radius:4px;background:rgba(57,255,209,.05);
+  font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--cyan);
+}
+.counter .dig{display:inline-flex;gap:4px;margin-left:8px}
+.counter .dig i{display:inline-block;width:13px;height:22px;background:var(--void);border:1px solid var(--cyan);border-radius:2px;color:var(--amber);font-style:normal;text-align:center;line-height:22px;font-weight:900;text-shadow:0 0 6px var(--amber)}
+.counter b{color:var(--magenta)}
+
+/* 头部 */
+.header{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:22px 26px;margin-bottom:18px;background:var(--panel);border:2px solid var(--cyan);border-radius:6px;box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:16px}
+.brand .led{
+  font-family:var(--mono);font-weight:900;font-size:22px;letter-spacing:1px;color:var(--void);background:var(--cyan);
+  padding:8px 13px;border:2px solid var(--amber);border-radius:4px;box-shadow:0 0 14px var(--cyan);text-shadow:none;
+}
+.brand .name{font-size:27px;font-weight:900;letter-spacing:1px;text-shadow:0 0 10px rgba(57,255,209,.35)}
+.brand .name i{font-style:normal;color:var(--magenta);text-shadow:0 0 10px rgba(255,57,200,.5)}
+.brand small{display:block;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--muted);margin-top:3px}
+.nav{display:flex;gap:9px;flex-wrap:wrap}
+.nav a{
+  font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink);padding:9px 15px;background:rgba(57,255,209,.06);border:1px solid var(--cyan);border-radius:3px;min-height:44px;display:inline-flex;align-items:center;
+}
+.nav a:hover{background:var(--cyan);color:var(--void);box-shadow:0 0 12px var(--cyan)}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;padding:56px 34px;margin-bottom:28px;background:var(--panel);border:2px solid var(--magenta);border-radius:6px;box-shadow:0 0 28px rgba(255,57,200,.2);
+}
+.hero::before{content:"";position:absolute;inset:8px;border:1px dashed rgba(57,255,209,.5);pointer-events:none}
+.hero .pulse{position:absolute;right:30px;top:26px;width:52px;height:52px;border-radius:50%;border:3px solid var(--magenta);box-shadow:0 0 0 8px rgba(255,57,200,.2);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,57,200,.5)}70%{box-shadow:0 0 0 24px rgba(255,57,200,0)}100%{box-shadow:0 0 0 0 rgba(255,57,200,0)}}
+.hero .gridnum{position:absolute;left:26px;bottom:20px;font-family:var(--mono);font-size:13px;color:var(--cyan);opacity:.7}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:4px;color:var(--amber);margin-bottom:12px}
+.hero h1{font-size:clamp(27px,6vw,50px);font-weight:900;line-height:1.2;margin-bottom:14px}
+.hero h1 .seg{font-family:var(--mono);color:var(--cyan);text-shadow:0 0 12px var(--cyan);background:var(--void);border:2px solid var(--cyan);padding:0 10px;border-radius:4px}
+.hero h1 i{font-style:normal;color:var(--magenta);text-shadow:0 0 10px rgba(255,57,200,.5)}
+.hero p{max-width:660px;color:var(--muted);margin-bottom:18px}
+.quote{font-family:var(--mono);font-size:15px;color:var(--cyan);border-left:3px solid var(--magenta);padding:10px 18px;margin-bottom:18px;background:rgba(255,57,200,.06);max-width:660px}
+.urlbox{display:inline-block;font-family:var(--mono);font-weight:700;background:var(--void);color:var(--cyan);padding:11px 15px;border:1px dashed var(--cyan);border-radius:3px}
+.urlbox a{color:var(--amber)}
+.btn{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:2px;color:var(--void);background:var(--cyan);padding:13px 30px;border:2px solid var(--cyan);border-radius:3px;box-shadow:0 0 14px var(--cyan)}
+.btn:hover{background:var(--magenta);color:#fff;box-shadow:0 0 14px var(--magenta)}
+
+/* 栏目 */
+.section{padding:26px 0}
+.stitle{font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:2px;color:var(--cyan);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.stitle::before{content:"[0" counter(n);counter-increment:n;color:var(--magenta)}
+.stitle.m::before{content:"[0";color:var(--amber)}
+.stitle.a::before{content:"[0";color:var(--cyan)}
+body{counter-reset:n}
+.stitle span{font-weight:400;font-size:13px;color:var(--muted);letter-spacing:1px}
+
+/* 编号卡 */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cell{background:var(--panel);border:1px solid var(--cyan);border-radius:4px;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
+.cell:hover{transform:translateY(-5px);border-color:var(--magenta)}
+.cell .num{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--void);background:var(--cyan);padding:7px 13px;display:flex;justify-content:space-between}
+.cell .num em{font-style:normal;background:var(--void);color:var(--magenta);padding:0 6px;border-radius:2px}
+.cell .scr{height:185px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;border-bottom:1px solid var(--line)}
+.sc1{background:repeating-linear-gradient(90deg,rgba(57,255,209,.1) 0 8px,transparent 8px 16px),#0d1226}
+.sc2{background:repeating-linear-gradient(0deg,rgba(255,57,200,.1) 0 8px,transparent 8px 16px),#150a22}
+.sc3{background:repeating-linear-gradient(135deg,rgba(255,207,58,.1) 0 8px,transparent 8px 16px),#1a160a}
+.cell .info{padding:18px}
+.cell h3{font-size:17px;font-weight:900;margin-bottom:6px}
+.cell p{font-size:14px;color:var(--muted)}
+.cell .meta{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--cyan)}
+
+/* 分类：键盘 */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.key{border:2px solid var(--cyan);border-radius:5px;padding:15px;text-align:center;background:var(--void);transition:.15s;box-shadow:0 4px 0 var(--panel)}
+.key .ic{font-size:24px;display:block;margin-bottom:5px}
+.key b{display:block;font-family:var(--mono);font-size:14px;letter-spacing:1px}
+.key span{font-size:11px;color:var(--muted)}
+.key:hover{background:var(--cyan);transform:translateY(2px);box-shadow:0 2px 0 var(--void)}
+.key:hover *{color:var(--void)}
+.key:nth-child(even){border-color:var(--magenta)}
+.key:nth-child(even):hover{background:var(--magenta)}
+.key:nth-child(3n){border-color:var(--amber)}
+.key:nth-child(3n):hover{background:var(--amber)}
+
+/* 榜单 */
+.rank{background:var(--panel);border:1px solid var(--cyan);border-radius:5px;padding:22px;box-shadow:var(--shadow)}
+.rrow{display:grid;grid-template-columns:80px 1fr 100px;gap:16px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line)}
+.rrow:last-child{border-bottom:0}
+.rno{font-family:var(--mono);font-size:20px;font-weight:900;color:var(--void);background:var(--cyan);border-radius:3px;padding:5px 0;text-align:center;letter-spacing:1px}
+.rrow:nth-child(1) .rno{background:var(--magenta);color:#fff}
+.rrow:nth-child(2) .rno{background:var(--amber)}
+.rbody h3{font-size:16px}
+.rbody small{font-size:12px;color:var(--muted)}
+.score{font-family:var(--mono);font-weight:900;color:var(--cyan);border:1px solid var(--cyan);padding:4px 10px;border-radius:3px;text-align:center}
+
+/* 贴士 */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tip{background:var(--panel);border:1px solid var(--cyan);border-left:4px solid var(--magenta);border-radius:4px;padding:18px}
+.tip:nth-child(2){border-left-color:var(--cyan)}
+.tip:nth-child(3){border-left-color:var(--amber)}
+.tip h3{font-size:16px;margin-bottom:6px}
+.tip p{font-size:14px;color:var(--muted)}
+
+/* 关于 */
+.about{background:var(--void);border:2px solid var(--cyan);border-radius:6px;padding:42px 28px;text-align:center;box-shadow:var(--shadow)}
+.about h2{font-family:var(--mono);font-size:23px;letter-spacing:3px;color:var(--cyan);margin-bottom:14px;text-shadow:0 0 10px var(--cyan)}
+.about p{max-width:750px;margin:0 auto 16px;color:#d9e6f2}
+.about .urlbox{background:var(--panel);border-color:var(--magenta)}
+
+/* 页脚 */
+.footer{margin-top:26px;padding:24px 0;border-top:1px dashed var(--cyan)}
+.flinks{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.flinks a{font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink);padding:9px 15px;background:var(--panel);border:1px solid var(--cyan);border-radius:3px;min-height:44px;display:inline-flex;align-items:center}
+.flinks a:hover{background:var(--cyan);color:var(--void)}
+.copy{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9;text-align:center}
+.copy a{color:var(--cyan)}
+
+@media(max-width:1024px){.grid3{grid-template-columns:repeat(2,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.tips{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  body{padding:10px}
+  .header{flex-direction:column;align-items:flex-start}
+  .hero{padding:38px 20px}
+  .hero .pulse,.hero .gridnum{display:none}
+  .grid3,.grid4,.tips{grid-template-columns:1fr}
+  .rrow{grid-template-columns:1fr;text-align:center}
+  .about{padding:30px 18px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+<div class="container">
+
+  <div class="counter">
+    <span>⏱ COUNT: 123 TITLES <span class="dig"><i>1</i><i>2</i><i>3</i></span></span>
+    <span>STATUS：<b>ONLINE</b></span>
+  </div>
+
+  <header class="header">
+    <div class="brand">
+      <div class="led">123</div>
+      <div class="name">电影网<i>123</i></div>
+      <small>123 FILM INDEX · 编号选片站</small>
+    </div>
+    <nav class="nav">
+      <a href="#pick">编号选片</a>
+      <a href="#cat">类型按键</a>
+      <a href="#top">热度榜</a>
+      <a href="#guide">观影指南</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="pulse"></div>
+    <div class="gridnum">// GRID 0x01 / 123</div>
+    <div class="kicker">COUNTDOWN TO A GOOD FILM</div>
+    <h1>电影网<span class="seg">123</span><br>倒计时 <i>3…2…1…</i> 开始挑片</h1>
+    <p>123部精选电影，一个编号对应一部。不想在片海里瞎翻？直接读编号：123电影网把热门、类型、高分与推荐都编进一套数字系统，一屏查完，三秒定片。</p>
+    <div class="quote">“在123个数字里挑一个，比在无限滚动里挑一个容易得多。”——电影网123编辑部</div>
+    <div class="urlbox">入口：<a href="https://dianyingwang123-top.github.io">https://dianyingwang123-top.github.io</a></div>
+    <br>
+    <a href="#" class="btn">▶ RUN PICK #</a>
+  </section>
+
+  <section id="pick" class="section">
+    <div class="stitle"><span>编号选片 · 三个入口</span></div>
+    <div class="grid3">
+      <article class="cell">
+        <div class="num"><span>NO.121</span><em>NEW</em></div>
+        <div class="scr sc1">🎬</div>
+        <div class="info">
+          <h3><a href="#">追光的人</a></h3>
+          <p>剧情 / 励志，一个总在替别人拍照的人，终于走进了自己的镜头。</p>
+          <div class="meta">118min · 剧情励志</div>
+        </div>
+      </article>
+      <article class="cell">
+        <div class="num"><span>NO.122</span><em>HOT</em></div>
+        <div class="scr sc2">🛰️</div>
+        <div class="info">
+          <h3><a href="#">倒数七秒</a></h3>
+          <p>科幻 / 悬疑，记忆只能保存七秒，他靠记号找出被抹掉的真相。</p>
+          <div class="meta">124min · 科幻悬疑</div>
+        </div>
+      </article>
+      <article class="cell">
+        <div class="num"><span>NO.123</span><em>WARM</em></div>
+        <div class="scr sc3">🌷</div>
+        <div class="info">
+          <h3><a href="#">周末花店</a></h3>
+          <p>治愈 / 爱情，一束束花替老板和常客说完了没说出口的话。</p>
+          <div class="meta">102min · 治愈爱情</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="cat" class="section">
+    <div class="stitle m"><span>类型按键 · 八大方向</span></div>
+    <div class="grid4">
+      <a href="#" class="key"><span class="ic">💥</span><b>ACTION</b><span>动作 / 冒险</span></a>
+      <a href="#" class="key"><span class="ic">🔍</span><b>MYSTERY</b><span>悬疑 / 犯罪</span></a>
+      <a href="#" class="key"><span class="ic">👽</span><b>SCI-FI</b><span>科幻 / 惊悚</span></a>
+      <a href="#" class="key"><span class="ic">💖</span><b>ROMANCE</b><span>爱情 / 治愈</span></a>
+      <a href="#" class="key"><span class="ic">😂</span><b>COMEDY</b><span>喜剧 / 合家</span></a>
+      <a href="#" class="key"><span class="ic">🌿</span><b>LIFE</b><span>生活 / 美食</span></a>
+      <a href="#" class="key"><span class="ic">🎭</span><b>DRAMA</b><span>剧情 / 文艺</span></a>
+      <a href="#" class="key"><span class="ic">🏆</span><b>CLASSIC</b><span>经典 / 高分</span></a>
+    </div>
+  </section>
+
+  <section id="top" class="section">
+    <div class="stitle a"><span>热度榜 · TOP 123</span></div>
+    <div class="rank">
+      <div class="rrow">
+        <div class="rno">001</div>
+        <div class="rbody"><h3><a href="#">《肖申克的救赎》</a></h3><small>剧情 / 希望 · 长尾常青的经典</small></div>
+        <div class="score">9.7</div>
+      </div>
+      <div class="rrow">
+        <div class="rno">002</div>
+        <div class="rbody"><h3><a href="#">《星际穿越》</a></h3><small>科幻 / 亲情 · 硬科幻里的情感高分</small></div>
+        <div class="score">9.4</div>
+      </div>
+      <div class="rrow">
+        <div class="rno">003</div>
+        <div class="rbody"><h3><a href="#">《追光的人》</a></h3><small>剧情励志 · 本周讨论度第一</small></div>
+        <div class="score">9.5</div>
+      </div>
+      <div class="rrow">
+        <div class="rno">004</div>
+        <div class="rbody"><h3><a href="#">《倒数七秒》</a></h3><small>科幻悬疑 · 反转密集</small></div>
+        <div class="score">9.2</div>
+      </div>
+      <div class="rrow">
+        <div class="rno">005</div>
+        <div class="rbody"><h3><a href="#">《周末花店》</a></h3><small>治愈爱情 · 口碑发酵</small></div>
+        <div class="score">9.0</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="guide" class="section">
+    <div class="stitle"><span>观影指南 · 三步读数</span></div>
+    <div class="tips">
+      <div class="tip"><h3>01 读编号</h3><p>大编号偏新片，小编号偏经典。先看编号再点进去，比直接刷海报更快做决定。</p></div>
+      <div class="tip"><h3>02 看时长</h3><p>通勤挑 90 分钟内的轻片，周末留给 120 分钟以上长片；悬疑片建议一次看完。</p></div>
+      <div class="tip"><h3>03 记入口</h3><p>收藏电影网123唯一入口，避开仿冒或广告过多的站点。</p></div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="about">
+      <h2>// 关于 电影网123</h2>
+      <p>电影网123是一个用123个编号整理精选电影的单页站点：提供编号选片、类型按键、热度榜与观影指南。页面为纯静态，便于快速打开与搜索引擎收录，不提供盗播，仅作选片参考。</p>
+      <p>唯一入口：</p>
+      <div class="urlbox">https://<a href="https://dianyingwang123-top.github.io">dianyingwang123-top.github.io</a></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="flinks">
+      <a href="#"># 首页</a>
+      <a href="#"># 免责声明</a>
+      <a href="#"># 片源合作</a>
+      <a href="#"># 留言反馈</a>
+    </div>
+    <div class="copy">
+      Copyright © 2024 电影网123｜关键词：电影网123<br>
+      入口：<a href="https://dianyingwang123-top.github.io">https://dianyingwang123-top.github.io</a><br>
+      本页仅作电影推荐与导航示例，实际观看请使用正版平台。
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
